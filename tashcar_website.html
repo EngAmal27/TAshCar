@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAshCar - قطع السيارات الأصلية</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            direction: rtl;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.8), rgba(57, 73, 171, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/><circle cx="200" cy="150" r="50" fill="%23ddd"/><circle cx="600" cy="300" r="80" fill="%23ddd"/><circle cx="1000" cy="200" r="60" fill="%23ddd"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: #ffeb3b;
+            color: #1a237e;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 235, 59, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 235, 59, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a237e;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1a237e, #3949ab);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #e0e0e0, #f5f5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            color: #1a237e;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .product-price {
+            color: #4caf50;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .product-button {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+
+        .product-button:hover {
+            background: #3949ab;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            height: 300px;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: #1a237e;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #1a237e;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1421;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card,
+        .product-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">TAshCar</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#products">المنتجات</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>TAshCar</h1>
+            <p>أفضل قطع السيارات الأصلية بأسعار منافسة</p>
+            <a href="#products" class="cta-button">تسوق الآن</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار TAshCar؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>قطع أصلية</h3>
+                    <p>جميع قطع السيارات لدينا أصلية ومضمونة من المصنع مباشرة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>توصيل سريع</h3>
+                    <p>نوصل طلبك في نفس اليوم داخل المدينة وخلال 24 ساعة للمدن الأخرى</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>خدمة التركيب</h3>
+                    <p>نوفر خدمة التركيب بواسطة فنيين مختصين ومدربين</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا المميزة</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🔧</div>
+                    <div class="product-info">
+                        <h3>محركات</h3>
+                        <p>محركات أصلية بضمان شامل لجميع أنواع السيارات</p>
+                        <div class="product-price">1500 ج.م</div>
+                        <button class="product-button">أضف للسلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🛞</div>
+                    <div class="product-info">
+                        <h3>إطارات</h3>
+                        <p>إطارات عالية الجودة من أفضل الماركات العالمية</p>
+                        <div class="product-price">800 ج.م</div>
+                        <button class="product-button">أضف للسلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🔋</div>
+                    <div class="product-info">
+                        <h3>بطاريات</h3>
+                        <p>بطاريات طويلة المدى مع ضمان سنتين</p>
+                        <div class="product-price">600 ج.م</div>
+                        <button class="product-button">أضف للسلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🚗</div>
+                    <div class="product-info">
+                        <h3>قطع كهربائية</h3>
+                        <p>جميع القطع الكهربائية للسيارات بجودة عالية</p>
+                        <div class="product-price">350 ج.م</div>
+                        <button class="product-button">أضف للسلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🛠️</div>
+                    <div class="product-info">
+                        <h3>أجزاء المكابح</h3>
+                        <p>أقراص وأسطوانات مكابح أصلية لضمان الأمان</p>
+                        <div class="product-price">450 ج.م</div>
+                        <button class="product-button">أضف للسلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💡</div>
+                    <div class="product-info">
+                        <h3>إضاءة</h3>
+                        <p>مصابيح LED وزينون عالية الإضاءة</p>
+                        <div class="product-price">200 ج.م</div>
+                        <button class="product-button">أضف للسلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">من نحن</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>TAshCar هي شركة رائدة في مجال توريد قطع السيارات الأصلية في المنطقة. نحن نعمل منذ أكثر من 15 سنة في هذا المجال ولدينا خبرة واسعة في توفير أفضل القطع بأسعار تنافسية.</p>
+                    <br>
+                    <p>نحن نؤمن بأن كل عميل يستحق الأفضل، لذلك نحرص على توفير قطع السيارات الأصلية فقط مع ضمان شامل وخدمة عملاء متميزة على مدار الساعة.</p>
+                    <br>
+                    <p>فريقنا من الخبراء مستعد لمساعدتك في اختيار القطعة المناسبة لسيارتك وتركيبها بأعلى معايير الجودة والأمان.</p>
+                </div>
+                <div class="about-image">
+                    🏢
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">تواصل معنا</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>الهاتف</h3>
+                    <p>01234567890</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <h3>البريد الإلكتروني</h3>
+                    <p>info@tashcar.com</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>العنوان</h3>
+                    <p>شارع الرئيسي، القاهرة، مصر</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <h3>ساعات العمل</h3>
+                    <p>السبت - الخميس: 9 ص - 8 م</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 TAshCar. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.product-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.textContent = 'تم الإضافة ✓';
+                this.style.background = '#4caf50';
+                setTimeout(() => {
+                    this.textContent = 'أضف للسلة';
+                    this.style.background = '#1a237e';
+                }, 2000);
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 35, 126, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1a237e 0%, #3949ab 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
