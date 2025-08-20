@@ -113,6 +113,128 @@
             background: #f8f9fa;
         }
 
+        /* Search Section */
+        .search-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+        }
+
+        .search-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-input, .search-select {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .search-input:focus, .search-select:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+        }
+
+        .search-button {
+            background: #ffeb3b;
+            color: #1a237e;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 235, 59, 0.3);
+        }
+
+        .search-results {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .search-result-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .result-info h4 {
+            color: #ffeb3b;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .result-info p {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .result-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .result-button:hover {
+            background: #45a049;
+        }
+
+        .result-button.details {
+            background: #ff9800;
+        }
+
+        .result-button.details:hover {
+            background: #f57c00;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -341,6 +463,7 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#search">البحث</a></li>
                     <li><a href="#products">المنتجات</a></li>
                     <li><a href="#about">من نحن</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
@@ -377,6 +500,65 @@
                     <div class="feature-icon">🔧</div>
                     <h3>خدمة التركيب</h3>
                     <p>نوفر خدمة التركيب بواسطة فنيين مختصين ومدربين</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search" class="search-section">
+        <div class="container">
+            <h2 class="section-title">ابحث عن قطعة سيارتك</h2>
+            <div class="search-container">
+                <div class="search-form">
+                    <input type="text" class="search-input" id="partName" placeholder="اسم القطعة (مثال: مكابح، محرك، بطارية)">
+                    <select class="search-select" id="carBrand">
+                        <option value="">اختر الماركة</option>
+                        <option value="toyota">تويوتا</option>
+                        <option value="nissan">نيسان</option>
+                        <option value="hyundai">هيونداي</option>
+                        <option value="kia">كيا</option>
+                        <option value="mercedes">مرسيدس</option>
+                        <option value="bmw">بي إم دبليو</option>
+                        <option value="audi">أودي</option>
+                        <option value="volkswagen">فولكس واجن</option>
+                        <option value="ford">فورد</option>
+                        <option value="chevrolet">شيفروليه</option>
+                    </select>
+                    <select class="search-select" id="carYear">
+                        <option value="">سنة الصنع</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="older">أقدم من 2015</option>
+                    </select>
+                    <select class="search-select" id="partCategory">
+                        <option value="">نوع القطعة</option>
+                        <option value="engine">محرك</option>
+                        <option value="brakes">مكابح</option>
+                        <option value="tires">إطارات</option>
+                        <option value="battery">بطارية</option>
+                        <option value="electrical">كهربائية</option>
+                        <option value="transmission">علبة تروس</option>
+                        <option value="suspension">تعليق</option>
+                        <option value="cooling">تبريد</option>
+                        <option value="exhaust">عادم</option>
+                        <option value="interior">داخلية</option>
+                        <option value="exterior">خارجية</option>
+                        <option value="lights">إضاءة</option>
+                    </select>
+                    <button type="button" class="search-button" onclick="searchParts()">بحث</button>
+                </div>
+                
+                <div class="search-results" id="searchResults">
+                    <!-- النتائج ستظهر هنا -->
                 </div>
             </div>
         </div>
@@ -537,6 +719,154 @@
                 header.style.background = 'linear-gradient(135deg, #1a237e 0%, #3949ab 100%)';
                 header.style.backdropFilter = 'none';
             }
+        });
+
+        // Search functionality
+        const partsDatabase = [
+            {
+                name: "مكابح أمامية تويوتا كورولا",
+                brand: "toyota",
+                year: "2020",
+                category: "brakes",
+                price: "450",
+                description: "مكابح أمامية أصلية لتويوتا كورولا 2020",
+                availability: "متوفر"
+            },
+            {
+                name: "بطارية هيونداي إلنترا",
+                brand: "hyundai",
+                year: "2021",
+                category: "battery",
+                price: "600",
+                description: "بطارية 12 فولت 70 أمبير ساعة",
+                availability: "متوفر"
+            },
+            {
+                name: "إطار ميشلان 195/65 R15",
+                brand: "toyota",
+                year: "2019",
+                category: "tires",
+                price: "800",
+                description: "إطار ميشلان مقاس 195/65 R15 للسيارات الصغيرة",
+                availability: "متوفر"
+            },
+            {
+                name: "محرك نيسان صني 1.6",
+                brand: "nissan",
+                year: "2018",
+                category: "engine",
+                price: "15000",
+                description: "محرك 1.6 لتر بنزين نيسان صني",
+                availability: "متوفر"
+            },
+            {
+                name: "مصابيح LED للمرسيدس",
+                brand: "mercedes",
+                year: "2022",
+                category: "lights",
+                price: "1200",
+                description: "مصابيح LED أمامية للمرسيدس فئة C",
+                availability: "متوفر"
+            },
+            {
+                name: "علبة تروس أوتوماتيك BMW",
+                brand: "bmw",
+                year: "2021",
+                category: "transmission",
+                price: "8500",
+                description: "علبة تروس أوتوماتيك 8 سرعات",
+                availability: "غير متوفر"
+            },
+            {
+                name: "نظام تعليق فورد فوكس",
+                brand: "ford",
+                year: "2020",
+                category: "suspension",
+                price: "2200",
+                description: "نظام تعليق أمامي كامل فورد فوكس",
+                availability: "متوفر"
+            },
+            {
+                name: "رديتر تبريد فولكس واجن",
+                brand: "volkswagen",
+                year: "2019",
+                category: "cooling",
+                price: "950",
+                description: "رديتر تبريد أصلي فولكس واجن جولف",
+                availability: "متوفر"
+            }
+        ];
+
+        function searchParts() {
+            const partName = document.getElementById('partName').value.toLowerCase();
+            const carBrand = document.getElementById('carBrand').value;
+            const carYear = document.getElementById('carYear').value;
+            const partCategory = document.getElementById('partCategory').value;
+            
+            const results = partsDatabase.filter(part => {
+                const nameMatch = !partName || part.name.toLowerCase().includes(partName);
+                const brandMatch = !carBrand || part.brand === carBrand;
+                const yearMatch = !carYear || part.year === carYear || carYear === 'older';
+                const categoryMatch = !partCategory || part.category === partCategory;
+                
+                return nameMatch && brandMatch && yearMatch && categoryMatch;
+            });
+            
+            displayResults(results);
+        }
+
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="search-result-item">
+                        <div class="result-info">
+                            <h4>لا توجد نتائج</h4>
+                            <p>لم نجد قطع مطابقة لبحثك. يرجى المحاولة بمعايير أخرى أو التواصل معنا مباشرة.</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultsContainer.innerHTML = results.map(part => `
+                    <div class="search-result-item">
+                        <div class="result-info">
+                            <h4>${part.name}</h4>
+                            <p>${part.description}</p>
+                            <p><strong>الحالة:</strong> ${part.availability}</p>
+                        </div>
+                        <div class="result-actions">
+                            <div class="result-price">${part.price} ج.م</div>
+                            <button class="result-button details" onclick="showPartDetails('${part.name}')">التفاصيل</button>
+                            <button class="result-button" onclick="addToCart('${part.name}', ${part.price})" ${part.availability === 'غير متوفر' ? 'disabled style="opacity:0.5"' : ''}>
+                                ${part.availability === 'متوفر' ? 'أضف للسلة' : 'غير متوفر'}
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            resultsContainer.classList.add('active');
+        }
+
+        function showPartDetails(partName) {
+            alert(`تفاصيل القطعة: ${partName}\n\nلمزيد من التفاصيل، يرجى التواصل معنا على:\nالهاتف: 01234567890\nالبريد الإلكتروني: info@tashcar.com`);
+        }
+
+        function addToCart(partName, price) {
+            alert(`تم إضافة "${partName}" للسلة بقيمة ${price} ج.م\n\nسيتم التواصل معك قريباً لتأكيد الطلب.`);
+        }
+
+        // Allow search on Enter key press
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInputs = document.querySelectorAll('.search-input, .search-select');
+            searchInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchParts();
+                    }
+                });
+            });
         });
     </script>
 </body>
